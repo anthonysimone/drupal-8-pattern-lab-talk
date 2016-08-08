@@ -33,6 +33,17 @@
 					<p>Anthony Simone</p>
 					<p>Elevated Third</p>
 				</section>
+
+				<section>
+					<h2>Expectations/Intentions</h2>
+					<ul>
+						<li>Practical discussion regarding incorporating Pattern Lab in a Drupal 8 project</li>
+						<li>We're going to touch on a lot of tools at a basic level, links will be provided for further exploration at another time.</li>
+						<li>We will discuss how all of these pieces fit together</li>
+						<li>Review a practical implementation that can get you up and running immediately if you wanted</li>
+						<li>Discuss some benefits and challenges of a decoupled frontend workflow in Drupal projects</li>
+					</ul>
+				</section>
 				
 				<section>
 					Front end workflows, atomic design, reusable components
@@ -59,41 +70,87 @@
 							<li>PHP or node version</li>
 							<li>Tool agnostic</li>
 							<li>Language agnostic</li>
+							<li>Templating engine flexible (Mustache, Twig, Handlebars, etc)</li>
 							<li>Viewport resizer, annotations, pattern lineage, and more</li>
 						</ul>
+					</section>
+					<section>
+						<h2>How it works</h2>
+						<p>Create templates, starting with the smallest pieces. Use those patterns to create larger pieces. Again and again.</p>
+						<p>You do not need to include all of your data statically. That would be not ideal, because you might want to use a specific template many times within your Pattern Lab project with different data.</p>
+						<p>Each template file is also backed by a JSON file that provides the content for the template.</p>
+						<p>In short, any time you include a template, you can customize the data being displayed if you desire.</p>
 					</section>
 				</section>
 
 				<section>
+					<section>
+						<h2>The Gold Standard</h2>
+						<p>Maintain a 
+					</section>
+					<section>
+						<h2>Pattern Lab in Drupal</h2>
+						<p>Using Pattern Lab in a Drupal 7 project would require maintaining a separate Pattern Lab project. Using same CSS/JS files would require manually maintaining the consistency of templates between the two projects.
+						<p>Because Drupal 8 uses Twig as its templating engine, the opportunity to add Pattern Lab to your Drupal project is now a possibility.</p>
+					</section>
 					<section>
 						<h2>Drupal 8 and Twig</h2>
 						<ul>
 							<li>Big change for frontend workflow in Drupal 8</li>
-							<li>Learn more about <a href="http://twig.sensiolabs.org/" target="_blank">Twig</a></li>
-							<li>Templating engine that is widely used within the PHP community</li>
-							<li>Extends the functionality of PHP templating, eventually compiles down to PHP</li>
-							<li>Test</li>
+							<li>Templating language that adds common templating patterns to PHP projects, learn more about <a href="http://twig.sensiolabs.org/" target="_blank">Twig</a></li>
+							<li>All templates in Drupal 8 are .twig files</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						Challenges adding Pattern Lab to a Drupal 8 project
+					</section>
+					<section>
+						<h2>How it is different in this context than on its own</h2>
+						<p>Pattern Lab implements a vanilla project based on whatever templating engine you choose to use. It assumes no dependencies. So, the general way to build more and more complex patterns is to include the simpler patterns within the more complex pattern templates.</p>
+					</section>
+					<section>
+						<p>For example</p>
+						<pre><code class="hljs" data-trim contenteditable>
+{% include "atoms-title" %}
+{% include "atoms-landscape-16x9" %}
+{% include "atoms-body" %}
+						</code></pre>
+						<p>If you're thinking: "Wait, but that's a problem, because my Drupal templates don't do that!" You're right, it's a problem! And it's in the way of reaching our gold standard goal.</p>
+					</section>
+					<section>
+						<h2>Let's fix it!</h2>
+						<p>Wait that seems kind of hard.</p>
+						<p>Fortunately, some awesome people have already been thinking about the hard problems. Aleksi Peebles has created a solution for the biggest road block that we're encountering.
+					</section>
+					<section>
+						<h2>Data Transform Plugin</h2>
+						<p>As we saw previously, each template file is backed by a JSON file, providing all of the data for the template.</p>
+						<p>WELL, now you might be thinking, WHAT IF I can somehow tell Pattern Lab about the patterns I want to include in this JSON file instead of in the template itself. That'd be swell!</p>
+						<p></p>
+					</section>
+					<section>
+						<h2>Special JSON Keys</h2>
+						<ul>
+							<li><code>attributes()</code> - Compiles the Drupal attributes</li>
+							<li><code>include()</code> - Include a template in the specified variable</li>
+							<li><code>join()</code> - Join multiple templates together in the specified variable</li>
 						</ul>
 					</section>
 					<section>
-
+						<p>The JSON files are processed and these three special keys allow for specific behavior.</p>
+						<p>Provides for the cusomization of the attributes var</p>
+						<p>Allows simple inclusion of templates in <code>{{ content.field_name }}</code> or <code>{{ content }}</code> vars
 					</section>
 				</section>
 
 				<section>
 					<section>
-						Pattern Lab in Drupal
+						<h2>Implementation</h2>
+						<p>We've made progress, and we're pretty sure it's going to work, but we're not there yet. There's still a lot to consider and decisions to make when adding Pattern Lab to your project.</p>
 					</section>
-					<section>
-						How it is different in this context than on its own
-					</section>
-					<section>
-						Aleksi Peebles, data transform plugin
-					</section>
-				</section>
-
-				<section>
-					Implementation
 				</section>
 
 				<section>
@@ -101,13 +158,13 @@
 						Challenges that come up for an implementation of Pattern Lab in Drupal
 					</section>
 					<section>
-						Data Transform Plugin
-					</section>
-					<section>
 						Where should Pattern Lab live?
 					</section>
 					<section>
 						Two instances of Twig/how to include templates, where they should live
+					</section>
+					<section>
+						Custom filters/functions, create definitions, etc
 					</section>
 					<sections>
 						{{ content }} and fields
