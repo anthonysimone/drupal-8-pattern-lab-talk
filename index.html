@@ -35,18 +35,41 @@
 				</section>
 
 				<section>
-					<h2>Expectations/Intentions</h2>
+					<h2>Goals</h2>
 					<ul>
-						<li>Practical discussion regarding incorporating Pattern Lab in a Drupal 8 project</li>
-						<li>We're going to touch on a lot of tools at a basic level, links will be provided for further exploration at another time.</li>
-						<li>We will discuss how all of these pieces fit together</li>
-						<li>Review a practical implementation that can get you up and running immediately if you wanted</li>
+						<li>Touch on a lot of concepts at a basic level, focusing on how they fit together to support Pattern Lab and Drupal 8</li>
+						<li>Review a practical implementation that gets you up and running immediately</li>
 						<li>Discuss some benefits and challenges of a decoupled frontend workflow in Drupal projects</li>
 					</ul>
 				</section>
 				
 				<section>
-					Front end workflows, atomic design, reusable components
+					<section>
+						<h2>Atomic Design</h2>
+						<ul>
+							<li>Use small pieces (atoms) to build out larger elements (molecules)</li>
+							<li>Molecules combine to make larger functional components (organisms) which you can use to build templates and pages</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Reusable Components</h2>
+						<ul>
+							<li>Atomic Design dictates creating and implementing reusable, explicitly defined components</li>
+							<li>Fields (reusable)</li>
+							<li>Field formatters (defined presentation)</li>
+							<li>Entities/bundles with view modes</li>
+							<li>Paragraphs</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Front End Workflow in Drupal 7</h2>
+						<ul>
+							<li>Sitebuilding -> Content -> Theming</li>
+							<li>Theming depends on placeholder content during development</li>
+							<li>Styling happens within the entire Drupal context</li>
+							<li>Problems?</li>
+						</ul>
+					</section>
 				</section>
 
 				<section>
@@ -60,8 +83,8 @@
 						<h2>Pattern Lab as a design system</h2>
 						<ul>
 							<li>Build pattern driven user interfaces using atomic design principles</li>
-							<li>Include patterns inside each other to create compenets from consistent building blocks</li>
-							<li>Pattern documentation - have the entire team using the same language throughout the entire project</li>
+							<li>Include patterns inside each other to create components from <b>consistent</b> building blocks</li>
+							<li>Documentation - have the entire team using the same language when referring to the design system throughout the entire project</li>
 						</ul>
 					</section>
 					<section>
@@ -71,15 +94,17 @@
 							<li>Tool agnostic</li>
 							<li>Language agnostic</li>
 							<li>Templating engine flexible (Mustache, Twig, Handlebars, etc)</li>
-							<li>Viewport resizer, annotations, pattern lineage, and more</li>
+							<li>Viewport resizer, annotations, pattern lineage, and more!</li>
 						</ul>
 					</section>
 					<section>
 						<h2>How it works</h2>
-						<p>Create templates, starting with the smallest pieces. Use those patterns to create larger pieces. Again and again.</p>
-						<p>You do not need to include all of your data statically. That would be not ideal, because you might want to use a specific template many times within your Pattern Lab project with different data.</p>
-						<p>Each template file is also backed by a JSON file that provides the content for the template.</p>
-						<p>In short, any time you include a template, you can customize the data being displayed if you desire.</p>
+						<p><b><i>HERE WE NEED IMAGE OF GENERIC PATTERN LAB DIRECTORY STRUCTURE AND PATTERNS FOLDER</i></b></p>
+						<p>Create smallest templates, include those in larger templates, etc...</p>
+						<p>You do not include your data statically within the template files</p>
+						<p>Templates are backed by a JSON file that provides the data</p>
+						<p>Any time you include a template, you can customize the data</p>
+						<p>Single source of truth</p>
 					</section>
 				</section>
 
@@ -90,46 +115,56 @@
 					</section>
 					<section>
 						<h2>Pattern Lab in Drupal</h2>
-						<p>Using Pattern Lab in a Drupal 7 project would require maintaining a separate Pattern Lab project. Using same CSS/JS files would require manually maintaining the consistency of templates between the two projects.
-						<p>Because Drupal 8 uses Twig as its templating engine, the opportunity to add Pattern Lab to your Drupal project is now a possibility.</p>
+						<p>Pattern Lab in a Drupal 7 project would require maintaining a two separate projects</p>
+						<p>Using same CSS/JS files would require manually maintaining the consistency between the two projects (WOOF)</p>
 					</section>
 					<section>
 						<h2>Drupal 8 and Twig</h2>
 						<ul>
-							<li>Big change for frontend workflow in Drupal 8</li>
+							<li>With Twig, the potential to add Pattern Lab directly to your Drupal project is now a possibility</li>
 							<li>Templating language that adds common templating patterns to PHP projects, learn more about <a href="http://twig.sensiolabs.org/" target="_blank">Twig</a></li>
-							<li>All templates in Drupal 8 are .twig files</li>
+							<li>All templates in Drupal 8 are <code>.twig</code> files</li>
 						</ul>
 					</section>
 				</section>
 
 				<section>
 					<section>
-						Challenges adding Pattern Lab to a Drupal 8 project
+						<h1>Challenges adding Pattern Lab to a Drupal 8 project</h1>
 					</section>
 					<section>
 						<h2>How it is different in this context than on its own</h2>
 						<p>Pattern Lab implements a vanilla project based on whatever templating engine you choose to use. It assumes no dependencies. So, the general way to build more and more complex patterns is to include the simpler patterns within the more complex pattern templates.</p>
 					</section>
 					<section>
-						<p>For example</p>
+						<h2>For example</h2>
 						<pre><code class="hljs" data-trim contenteditable>
-{% include "atoms-title" %}
-{% include "atoms-landscape-16x9" %}
-{% include "atoms-body" %}
+&lt;article class="product"&gt;
+  &lt;div class="main"&gt;
+    {% include "atoms-title" %}
+    {% include "atoms-landscape-16x9" %}
+    {% include "atoms-body" %}
+  &lt;/div&gt;
+  &lt;aside class="details"&gt;
+    {% include "molecules-details" %}
+  &lt;/aside&gt;
+&lt;/article&gt;
 						</code></pre>
-						<p>If you're thinking: "Wait, but that's a problem, because my Drupal templates don't do that!" You're right, it's a problem! And it's in the way of reaching our gold standard goal.</p>
+						<p>If you're thinking: <i>"Wait, but that's no good!"</i>, you're right, it's not!</p>
 					</section>
 					<section>
-						<h2>Let's fix it!</h2>
-						<p>Wait that seems kind of hard.</p>
-						<p>Fortunately, some awesome people have already been thinking about the hard problems. Aleksi Peebles has created a solution for the biggest road block that we're encountering.
+						<h2>Let's fix it!!</h2>
+						<ul>
+							<li>...wait that seems kind of hard.</li>
+							<li><code>{% include "atoms-title" %} != {{ content.field_title }}</code></li>
+							<li>Fortunately, some awesome people have already been thinking about the hard problems. Aleksi Peebles has created a solution for the biggest road block that we're encountering.</li>
+						</ul>
 					</section>
 					<section>
 						<h2>Data Transform Plugin</h2>
 						<p>As we saw previously, each template file is backed by a JSON file, providing all of the data for the template.</p>
 						<p>WELL, now you might be thinking, WHAT IF I can somehow tell Pattern Lab about the patterns I want to include in this JSON file instead of in the template itself. That'd be swell!</p>
-						<p></p>
+						<p><b><i>WE NEED JSON FILE EXAMPLES</i></b></p>
 					</section>
 					<section>
 						<h2>Special JSON Keys</h2>
@@ -137,6 +172,7 @@
 							<li><code>attributes()</code> - Compiles the Drupal attributes</li>
 							<li><code>include()</code> - Include a template in the specified variable</li>
 							<li><code>join()</code> - Join multiple templates together in the specified variable</li>
+							<li>WE NEED EXAMPLES</li>
 						</ul>
 					</section>
 					<section>
@@ -149,26 +185,22 @@
 				<section>
 					<section>
 						<h2>Implementation</h2>
-						<p>We've made progress, and we're pretty sure it's going to work, but we're not there yet. There's still a lot to consider and decisions to make when adding Pattern Lab to your project.</p>
+						<p>We've made progress, the big problem is solved, and we're pretty sure it's going to work, but we're not there yet.</p>
+					</section>
+					<section>
+						<h2>Some examples of solutions</h2>
+						<ul>
+							<li>Forum One's <a href="https://forumone.com/" target="_blank">talk</a> at Drupal Con New Orleans on Drupal 8 and Pattern Lab</li>
+							<li>Phase Two's <a href="https://events.drupal.org/neworleans2016/sessions/wireframes-widgets-using-paragraphs-and-prototyping-tools-create" target="_blank">talk</a> at Drupal Con New Orleans about design process</li>
+							<li>Aleksi Peeble's Shila theme</li>
+						</ul>
 					</section>
 				</section>
 
 				<section>
-					<h2>Some examples of solutions</h2>
-					<ul>
-						<li>Forum One's <a href="https://forumone.com/" target="_blank">talk</a> at Drupal Con New Orleans on Drupal 8 and Pattern Lab</li>
-						<li>Phase Two's <a href="https://events.drupal.org/neworleans2016/sessions/wireframes-widgets-using-paragraphs-and-prototyping-tools-create" target="_blank">talk</a> at Drupal Con New Orleans about design process</li>
-						<li>Aleksi Peeble's Shila theme</li>
-					</ul>
-				</section>
-
-				<section>
-					<h2>Our Solution</h2>
-				</section>
-
-				<section>
 					<section>
-						Challenges that come up for an implementation of Pattern Lab in Drupal
+						<h2>Our Solutions</h2>
+						<p>Let's look at some more challenges that come up for an implementation of Pattern Lab in Drupal and see how our approach will solve them</p>
 					</section>
 					<section>
 						<h2>Project Structure</h2>
@@ -219,6 +251,9 @@
 						<p>Caveats: Pattern Lab will only recognize templates in these immediate child directories, so you are limited in the way you can structure your <code>templates</code> directory in your drupal project</p>
 					</section>
 					<section>
+						<h1><b><i>DIRECTORIES SCREENSHOT PATTERNS/TEMPLATES</i></b></h1>
+					</section>
+					<section>
 						<h2>Custom filters/functions</h2>
 						<p>Drupal's implementation of Twig comes with some custom filters and functions out of the box. Many of these are already defined in the Drupal Pattern Lab project, but you need to make sure any custom function or filter is defined otherwise compiling your project will break. The filters don't need to do anything, they just need a definition. Don't forget! It can be an annoying bug to figure out.</p>
 					</section>
@@ -230,6 +265,11 @@
 							<li><code>{{ content }}</code> works the same as <code>&lt;?php print $variables['content'] ?&rt;</code> because of Drupal's custom Twig implementation</li>
 							<li>This is also part of the reason the Data Transform Plugin is necessary</li>
 							<li>However, you may find yourself being more explicit with your templates</li>
+						</ul>
+					</section>
+					<section>
+						<h2>{{ content }} Continued</h2>
+						<ul>
 							<li>For example, when providing JSON to back your templates, you can use <code>join()</code> to merge multiple field templates and print them all out with <code>{{ content }}</code> or you can simply <code>include()</code> other templates in each key under content and print them with <code>{{ content.field_name}}</code></li>
 							<li>However, you can't quite do both, because the <code>without</code> filter doesn't really function as it does in Drupal, it's merely defined so its use in Drupal templates doesn't cause an error</li>
 							<li>For the time being, in each individual template, you'll need to choose one pattern or the other, based on your needs</li>
@@ -242,6 +282,9 @@
 						Demonstrate a real life example of Pattern Lab in Drupal 8
 					</section>
 					<section>
+						Directory Structure
+					</section>
+					<section>
 						Consider how templates are being used
 					</section>
 					<section>
@@ -251,7 +294,7 @@
 						Look at how templates are being built into larger pieces
 					</section>
 					<section>
-						Maybe demo adding a new one
+						Maybe demo adding a new one (probably not)
 					</section>
 				</section>
 
