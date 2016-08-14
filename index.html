@@ -83,27 +83,23 @@
 						<h2>Pattern Lab as a Design System</h2>
 						<ul>
 							<li>Build pattern driven user interfaces using atomic design principles</li>
-							<li>Include patterns inside each other to create components from <b>consistent</b> building blocks</li>
-							<li>Documentation - have the entire team using the same language when referring to the design system throughout the entire project</li>
+							<li>Create components from <b>consistent</b>, defined building blocks</li>
+							<li>Documentation - consistent language throughout entire team</li>
 						</ul>
 					</section>
 					<section>
 						<h2>Pattern Lab as an Implementation</h2>
 						<ul>
 							<li>PHP or node version</li>
-							<li>Tool agnostic</li>
-							<li>Language agnostic</li>
+							<li>Tool/Language agnostic</li>
 							<li>Templating engine flexible (Mustache, Twig, Handlebars, etc)</li>
 							<li>Viewport resizer, annotations, pattern lineage, and more!</li>
 						</ul>
 					</section>
 					<section>
 						<h2>How it Works</h2>
-						<p><b><i>HERE WE NEED IMAGE OF GENERIC PATTERN LAB DIRECTORY STRUCTURE AND PATTERNS FOLDER</i></b></p>
 						<p>Create smallest templates, include those in larger templates, etc...</p>
-						<p>You do not include your data statically within the template files</p>
 						<p>Templates are backed by a JSON file that provides the data</p>
-						<p>Any time you include a template, you can customize the data</p>
 						<p>Single source of truth</p>
 					</section>
 				</section>
@@ -114,16 +110,18 @@
 						<p>Maintain a Drupal 8 project that implements Pattern Lab. All assets (templates, CSS, JS) are shared between the two projects in an identical state (one source).</p>
 					</section>
 					<section>
-						<h2>Pattern Lab in Drupal</h2>
-						<p>Pattern Lab in a Drupal 7 project would require maintaining a two separate projects</p>
-						<p>Using same CSS/JS files would require manually maintaining the consistency between the two projects (WOOF)</p>
+						<h2>Pattern Lab in Drupal (7)</h2>
+						<ul>
+							<li>Pattern Lab in a Drupal 7 project would require maintaining a two separate projects</li>
+							<li>Using same CSS/JS files would require manually maintaining the consistency between the two projects (<b><i>woof</i></b>)</li>
+						</ul>
 					</section>
 					<section>
-						<h2>Drupal 8 and Twig</h2>
+						<h2>Pattern Lab in Drupal (8)</h2>
 						<ul>
-							<li>With Twig, the potential to add Pattern Lab directly to your Drupal project is now a possibility</li>
-							<li>Templating language that adds common templating patterns to PHP projects, learn more about <a href="http://twig.sensiolabs.org/" target="_blank">Twig</a></li>
+							<li><a href="http://twig.sensiolabs.org/" target="_blank">Twig</a> is a templating engine that adds common templating patterns to PHP projects</li>
 							<li>All templates in Drupal 8 are <code class="inline">.twig</code> files</li>
+							<li>Integrating Pattern Lab directly into your Drupal project is now a possibility</li>
 						</ul>
 					</section>
 				</section>
@@ -133,8 +131,11 @@
 						<h1>Challenges Adding Pattern Lab to a Drupal 8 Project</h1>
 					</section>
 					<section>
-						<h2>How it is Different in This Context Than on its Own</h2>
-						<p>Pattern Lab implements a vanilla project based on whatever templating engine you choose to use. It assumes no dependencies. So, the general way to build more and more complex patterns is to include the simpler patterns within the more complex pattern templates.</p>
+						<h2>Vanilla Pattern Lab Project</h2>
+						<ul>
+							<li>Pattern Lab implements the templating language chosen without assumptions</li>
+							<li>Includes and extends build out project structure
+						</ul>
 					</section>
 					<section>
 						<h2>For Example</h2>
@@ -155,16 +156,18 @@
 					<section>
 						<h2>Let's Fix It!!</h2>
 						<ul>
-							<li>...wait that seems kind of hard.</li>
-							<li><code class="inline">{% include "atoms-title" %} != {{ content.field_title }}</code></li>
-							<li>Fortunately, some awesome people have already been thinking about the hard problems. Aleksi Peebles has created a solution for the biggest road block that we're encountering.</li>
+							<li>...but, that seems kind of hard.</li>
+							<li><code class="inline">{% include "atoms-title" %}</code> != <code class="inline">{{ content.field_title }}</code></li>
+							<li>Fortunately, some awesome people have already been thinking about the hard problems</li>
 						</ul>
 					</section>
 					<section>
 						<h2>Data Transform Plugin</h2>
-						<p>As we saw previously, each template file is backed by a JSON file, providing all of the data for the template.</p>
-						<p>WELL, now you might be thinking, WHAT IF I can somehow tell Pattern Lab about the patterns I want to include in this JSON file instead of in the template itself. That'd be swell!</p>
-						<p><b><i>WE NEED JSON FILE EXAMPLES</i></b></p>
+						<ul>
+							<li>Aleksi Peebles developed a solution</li>
+							<li><code class="inline">.twig</code> templates and <code class="inline">.json</code> files exist in pairs</li>
+							<li>Use the <code class="inline">.json</code> data to include templates</li>
+						</ul>
 					</section>
 					<section>
 						<h2>Special JSON Keys</h2>
@@ -172,13 +175,8 @@
 							<li><code class="inline">attributes()</code> - Compiles the Drupal attributes</li>
 							<li><code class="inline">include()</code> - Include a template in the specified variable</li>
 							<li><code class="inline">join()</code> - Join multiple templates together in the specified variable</li>
-							<li>WE NEED EXAMPLES</li>
+							<li>Allows simple inclusion of templates in <code class="inline">{{ content.field_name }}</code> or <code class="inline">{{ content }}</code> vars, but more on this later</li>
 						</ul>
-					</section>
-					<section>
-						<p>The JSON files are processed and these three special keys allow for specific behavior.</p>
-						<p>Provides for the cusomization of the attributes var</p>
-						<p>Allows simple inclusion of templates in <code class="inline">{{ content.field_name }}</code> or <code class="inline">{{ content }}</code> vars, but more on this later</p>
 					</section>
 				</section>
 
@@ -190,9 +188,9 @@
 					<section>
 						<h2>Some Examples of Solutions</h2>
 						<ul>
-							<li>Forum One's <a href="https://forumone.com/" target="_blank">talk</a> at Drupal Con New Orleans on Drupal 8 and Pattern Lab</li>
+							<li>Forum One's <a href="https://events.drupal.org/neworleans2016/sessions/big-easy-front-end-development-pattern-lab-and-twig" target="_blank">talk</a> at Drupal Con New Orleans on Drupal 8 and Pattern Lab</li>
 							<li>Phase Two's <a href="https://events.drupal.org/neworleans2016/sessions/wireframes-widgets-using-paragraphs-and-prototyping-tools-create" target="_blank">talk</a> at Drupal Con New Orleans about design process</li>
-							<li>Aleksi Peeble's Shila theme</li>
+							<li>Aleksi Peeble's <a href="https://github.com/aleksip/shila-drupal-theme" target="_blank">Shila theme</a></li>
 						</ul>
 					</section>
 				</section>
@@ -210,21 +208,11 @@
 						</ul>
 					</section>
 					<section>
-						<h2>Shila Theme</h2>
-						<ul>
-							<li>Aleksi Peebles made a Drupal 8 theme, <a href="https://github.com/aleksip/shila-drupal-theme" target="_blank">Shila</a>, that implements Pattern Lab in a way taht can be included in <i>any</i> theme</li>
-							<li>The intention is that it does not depend on anything else</li>
-							<li>So, it requires theme behavior to depend on it, asset workflow, etc</li>
-							<li>It's a great starting point and completely flushed out so it's worth looking at and understanding, but if you're generally building custom themes for projects from some type of starter, it probably makes more sense to incorporate Pattern Lab into your theme implementation. So we'll move on for now.</li>
-						</ul>
-					</section>
-					<section>
 						<h2>Two Twigs</h2>
 						<ul>
 							<li>Drupal 8 and Pattern Lab both have their own implementation of Twig</li>
-							<li>How is this reconciled?</li>
-							<li>We don't want to hack either project and depend on a custom implementation</li>
-							<li>We try to work with what we have</li>
+							<li>How is this reconciled, without hacking either project?</li>
+							<li>Let's try to work with what we have</li>
 						</ul>
 					</section>
 					<section>
@@ -252,16 +240,16 @@
 						</table>
 					</section>
 					<section>
-						<h2>Solution?</h2>
+						<h2>Problem</h2>
 						<ul>
-							<li>Multiple legitimate ways to solve the problem</li>
-							<li>Two talks from Drupal Con New Orleans that are worth watching that discuss a lot of these exact issues in more detail are here and here</li>
-							<li>Some solutions involve copying templates from the Pattern Lab directories to a <code class="inline">templates</code> directory in the Drupal theme</li>
-							<li>Really, we want only one source of truth for template files if at all possible.</li>
-							<li>Also, we would probably prefer that source lives where you might expect it to on a typical Drupal 8 project, maybe a <code class="inline">templates</code> directory in your theme, for example</li>
+							<li>Drupal is aware of all templates inside Pattern Lab</li>
+							<li>Pattern Lab is not aware of templates outside of its project root</li>
+							<li>We want a single source of truth for our assets</li>
+							<li>We also would like our templates should live where you might expect to find them</li>
 						</ul>
 					</section>
 					<section>
+						<h2>Solution</h2>
 						<p>If we create a dummy directory in our patterns folder called <code class="inline">drupal-templates</code> and inside have a folder that is symlinked to each corresponding template folder (<code class="inline">node</code>, <code class="inline">paragraph</code>, <code class="inline">form</code>, for example), then we can keep all of our templates in our Drupal project where we expect to see them, but also give Pattern Lab access</p>
 						<p>Caveats: Pattern Lab will only recognize templates in these immediate child directories, so you are limited in the way you can structure your <code class="inline">templates</code> directory in your drupal project</p>
 					</section>
@@ -380,7 +368,6 @@
 							<li>HTML/JS/CSS</li>
 							<li>Confident debugging issues that result from any combination of the above!</li>
 						</ul>
-						<p>Too many tools? It depends on your workflow, and your resources. But this is the direction of the Front End developer in the web space. Tools beyond html/css/javascript are par for the course.</p>
 					</section>
 					<section>
 						<h2>Too Many Tools?</h2>
@@ -426,21 +413,12 @@
 						<li>Add Pattern Lab in your theme: <code>composer create-project pattern-lab/edition-drupal-standard</code></li>
 						<li>Choose a starter kit option (demo gives some reasonable examples, the other starter kits have helpful examples as well) choose replace</li>
 						<li>Adjust assets in header</li>
-						<li>Add appropriate gulp tasks</li>
+						<li>Optionally add/update gulp/grunt tasks for asset workflow</li>
 						<li>Create a drupal-templates folder in Pattern Lab and create symlinks inside to all of your template containing folders</li>
-						<li>Add any additional filters/functions used in your project, make sure to Merge on pl updates</li>
+						<li>Add any additional filters/functions used in your project, make sure to select Merge on \pl updates</li>
 						<li>Generate your pattern lab for the first time</li>
 						<li>Start adding templates/json in pattern lab that reference your Drupal templates</li>
 						<li>Theme and generate as you go!</li>
-					</ol>
-					<ol>
-						<li>Composer new project in theme</li>
-						<li>Pick a starter</li>
-						<li>Npm</li>
-						<li>Link templates</li>
-						<li>Add assets</li>
-						<li>Add Tasks?</li>
-						<li>Start theming!</li>
 					</ol>
 				</section>
 			</div>
