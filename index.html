@@ -179,7 +179,7 @@
 					<section>
 						<h2>Special JSON Keys</h2>
 						<ul>
-							<li><code class="inline">attributes()</code> - Compiles the Drupal attributes</li>
+							<li><code class="inline">Attribute()</code> - Compiles the Drupal attributes object</li>
 							<li><code class="inline">include()</code> - Include a template in the specified variable</li>
 							<li><code class="inline">join()</code> - Join multiple templates together in the specified variable</li>
 							<li>Allows simple inclusion of templates in <code class="inline">{{ content.field_name }}</code> or <code class="inline">{{ content }}</code> vars, but more on this later</li>
@@ -235,7 +235,7 @@
 									<td>
 										<p>Finds templates <i>anywhere</i> in the Drupal theme</p>
 										<p>Only recognizes templates ending with <code class="inline">.html.twig</code></p>
-										<p>Will not include <code class="inline".twig</code> files</p>
+										<p>Will not include <code class="inline">.twig</code> files</p>
 									</td>
 									<td>
 										<p>Recognizes in specific locations within the PL project</p>
@@ -288,13 +288,12 @@
 							<li>Ensure all custom filters and functions are defined in your Pattern Lab project</li>
 							<li><code class="inline">pattern-lab/source/_twig-components</code></li>
 						</ul>
-						<blockquote>Make sure all custom filters and functions are defined in your Pattern Lab project!.</blockquote>
 					</section>
 					<section>
 						<h3>{{ content }} v {{ content.field_name }}</h3>
 						<ul>
 							<li>Twig prints strings</li>
-							<li><code class="inline">{{ content }}</code> works the same as <code class="inline">&lt;?php print $variables['content'] ?&rt;</code> because of Drupal's custom Twig implementation</li>
+							<li><code class="inline">{{ content }}</code> works the same as <code class="inline">&lt;?php print $variables['content'] ?&gt;</code> because of Drupal's custom Twig implementation</li>
 							<li>You may find yourself being more explicit printing fields in your templates</li>
 						</ul>
 					</section>
@@ -326,6 +325,11 @@
 							<li>The Pattern Lab <a href="http://youthonrecord.org/themes/custom/themekit/pattern-lab/published/index.html" target="_blank">implementation</a></li>
 						</ul>
 					</section>
+				</section>
+
+				<section class="test-bg" data-background-color="#e6d149" data-background-image="./media/images/sun-rays.svg">
+					<h2>The Gold Standard</h2>
+					<p>Maintain a Drupal 8 project that implements Pattern Lab. All assets (templates, CSS, JS) are shared between the two projects in an identical state (one source).</p>
 				</section>
 
 				<section>
@@ -392,7 +396,7 @@
 						<ul>
 							<li>Workflow</li>
 							<li>Resources</li>
-							<li>Team memberes</li>
+							<li>Team members</li>
 							<li>Some may argue that this has already become the commonplace description of a frontend developer in many other spaces</li>
 						</ul>
 					</section>
@@ -414,10 +418,10 @@
 					<small>
 						<ul class="small">
 							<li><a href="http://bradfrost.com/blog/post/atomic-web-design/" target="_blank">Brad Frost's Atomic Design</a></li>
-							<li><a href="http://bradfrost.com/blog/post/atomic-web-design/" target="_blank">Pattern Lab</a></li>
-							<li><a href="http://bradfrost.com/blog/post/atomic-web-design/" target="_blank">Twig</a></li>
-							<li><a href="http://bradfrost.com/blog/post/atomic-web-design/" target="_blank">Composer</a></li>
-							<li><a href="http://bradfrost.com/blog/post/atomic-web-design/" target="_blank">Gulp</a>/<a href="http://bradfrost.com/blog/post/atomic-web-design/" target="_blank">npm</a></li>
+							<li><a href="http://patternlab.io/" target="_blank">Pattern Lab</a></li>
+							<li><a href="http://twig.sensiolabs.org/" target="_blank">Twig</a></li>
+							<li><a href="https://getcomposer.org/" target="_blank">Composer</a></li>
+							<li><a href="http://gulpjs.com/" target="_blank">Gulp</a>/<a href="https://www.npmjs.com/" target="_blank">npm</a></li>
 							<li><a href="https://github.com/aleksip/plugin-data-transform" target="_blank">Data Transform Plugin</a></li>
 							<li>Forum One's Drupal Con <a href="https://events.drupal.org/neworleans2016/sessions/big-easy-front-end-development-pattern-lab-and-twig" target="_blank">talk</a> on their implementation of Pattern Lab</li>
 							<li>Phase Two's Drupal Con <a href="https://events.drupal.org/neworleans2016/sessions/road-runner-rules-more-what-you%E2%80%99d-call-guidelines-design-systems" target="_blank">talk</a> on design systems, Phase Two's <a href="https://github.com/phase2/pattern-lab-starter" target="_blank">starter kit</a></li>
