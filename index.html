@@ -31,6 +31,7 @@
 					<h2>Atomic Design in Drupal 8: Isolating Your Frontend Workflow with Pattern Lab!</h2>
 					<p>Anthony Simone</p>
 					<p>Elevated Third</p>
+					<p><small><a href="https://anthonysimone.github.com/drupal-8-pattern-lab-talk" target="_blank">anthonysimone.github.com/drupal-8-pattern-lab-talk</a></small></p>
 				</section>
 
 				<section>
@@ -98,9 +99,15 @@
 					</section>
 					<section>
 						<h2>How it Works</h2>
-						<p>Create smallest templates, include those in larger templates, etc...</p>
-						<p>Templates are backed by a JSON file that provides the data</p>
-						<p>Single source of truth</p>
+						<ul>
+							<li>Create smallest templates, include those in larger templates, etc...</li>
+							<li>Templates are backed by a JSON file that provides the data</li>
+							<li>Single source of truth</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Pattern Lab Structure</h2>
+						<img style="width: 50%;" src="./media/images/pattern-lab-structure.png">
 					</section>
 				</section>
 
@@ -231,7 +238,7 @@
 										<p>Will not include <code class="inline".twig</code> files</p>
 									</td>
 									<td>
-										<p>Recognizes in specific locations within the project</p>
+										<p>Recognizes in specific locations within the PL project</p>
 										<p>Any templates ending in <code class="inline">.twig</code></p>
 										<p>PL is inside our Drupal project</p>
 									</td>
@@ -250,42 +257,62 @@
 					</section>
 					<section>
 						<h2>Solution</h2>
-						<p>If we create a dummy directory in our patterns folder called <code class="inline">drupal-templates</code> and inside have a folder that is symlinked to each corresponding template folder (<code class="inline">node</code>, <code class="inline">paragraph</code>, <code class="inline">form</code>, for example), then we can keep all of our templates in our Drupal project where we expect to see them, but also give Pattern Lab access</p>
-						<p>Caveats: Pattern Lab will only recognize templates in these immediate child directories, so you are limited in the way you can structure your <code class="inline">templates</code> directory in your drupal project</p>
-					</section>
-					<section>
-						<h1><b><i>DIRECTORIES SCREENSHOT PATTERNS/TEMPLATES</i></b></h1>
-					</section>
-					<section>
-						<h2>Custom Filters and Functions</h2>
-						<p>Drupal's implementation of Twig comes with some custom filters and functions out of the box. Many of these are already defined in the Drupal Pattern Lab project, but you need to make sure any custom function or filter is defined otherwise compiling your project will break. The filters don't need to do anything, they just need a definition. Don't forget! It can be an annoying bug to figure out.</p>
-					</section>
-					<section>
-						<h2>{{ content }} and {{ content.field_name }}</h2>
 						<ul>
-							<li>Twig handles mostly strings</li>
-							<li><code class="inline">{{ var_name }}</code> is how we render things</li>
-							<li><code class="inline">{{ content }}</code> works the same as <code class="inline">&lt;?php print $variables['content'] ?&rt;</code> because of Drupal's custom Twig implementation</li>
-							<li>This is also part of the reason the Data Transform Plugin is necessary</li>
-							<li>However, you may find yourself being more explicit with your templates</li>
+							<li>Symlinks!</li>
+							<li>Dir in our patterns folder <code class="inline">drupal-templates</code> with symlinks to template directories (<code class="inline">node</code>, <code class="inline">paragraph</code>, <code class="inline">form</code>, for example)</li>
+							<li>then we can keep all of our templates in our Drupal project where we expect to see them, but also give Pattern Lab access</li>
+							<li><b>Caveat:</b> Pattern Lab will only recognize templates in these immediate child directories, so you are limited in the way you can structure your <code class="inline">templates</code> directory in your drupal project</li>
 						</ul>
 					</section>
 					<section>
-						<h2>{{ content }} Continued</h2>
+						<h2>Folder Structure</h2>
+						<img style="width: 48%; float: left;" src="./media/images/drupal-symlinks.png">
+						<img style="width: 48%; float: right;" src="./media/images/themekit-templates.png">
+					</section>
+					<section>
+						<h2>Template Inclusion</h2>
+						<div style="width: 48%; float: left;">
+							<ul>
+								<li><small>Most templates will simply include/extend a drupal template</small></li>
+							</ul>
+							<img src="./media/images/node-template.png">
+						</div>
+						<div style="width: 48%; float: right;">
+							<img src="./media/images/twig-pl-template.png">
+							<img src="./media/images/json-pl.png">
+						</div>
+					</section>
+					<section>
+						<h2>Custom Filters and Functions</h2>
 						<ul>
-							<li>For example, when providing JSON to back your templates, you can use <code class="inline">join()</code> to merge multiple field templates and print them all out with <code class="inline">{{ content }}</code> or you can simply <code class="inline">include()</code> other templates in each key under content and print them with <code class="inline">{{ content.field_name}}</code></li>
-							<li>However, you can't quite do both, because the <code class="inline">without</code> filter doesn't really function as it does in Drupal, it's merely defined so its use in Drupal templates doesn't cause an error</li>
-							<li>For the time being, in each individual template, you'll need to choose one pattern or the other, based on your needs</li>
+							<li>Ensure all custom filters and functions are defined in your Pattern Lab project</li>
+							<li><code class="inline">pattern-lab/source/_twig-components</code></li>
+						</ul>
+						<blockquote>Make sure all custom filters and functions are defined in your Pattern Lab project!.</blockquote>
+					</section>
+					<section>
+						<h3>{{ content }} v {{ content.field_name }}</h3>
+						<ul>
+							<li>Twig prints strings</li>
+							<li><code class="inline">{{ content }}</code> works the same as <code class="inline">&lt;?php print $variables['content'] ?&rt;</code> because of Drupal's custom Twig implementation</li>
+							<li>You may find yourself being more explicit printing fields in your templates</li>
+						</ul>
+					</section>
+					<section>
+						<h3>{{ content }} Continued</h3>
+						<ul>
+							<li><code class="inline">join()</code> can merge multiple field templates into a string and print them all out with <code class="inline">{{ content }}</code></li>
+							<li><code class="inline">include()</code> single templates in each key under content and print them with <code class="inline">{{ content.field_name}}</code></li>
+							<li>Though, you can't quite do both</li>
+							<li>Choose one pattern or the other</li>
 						</ul>
 					</section>
 					<section>
 						<h2>OMG My Repo is <i>SO MESSY</i></h2>
 						<ul>
-							<li>Because of how pattern lab works, changes to source files can cascade into many other altered files</li>
-							<li>Add the <code class="inline">public</code> dir to your <code class="inline">.gitignore</code></li>
+							<li>Ignore the <code class="inline">public</code> dir</li>
 							<li>Create a <code class="inline">published</code> directory</li>
 							<li>Gulp (or grunt) task that copies public to published</li>
-							<li>Commit all Pattern Lab dist changes only on "publish" of a new version, and keep it all in its own commit</li>
 						</ul>
 					</section>
 				</section>
@@ -297,15 +324,6 @@
 							<li>Youth on Record is a local non-profit that works with music education and the Denver youth</li>
 							<li><a href="http://youthonrecord.org/" target="_blank">Site build</a> in Druapl 8</li>
 							<li>The Pattern Lab <a href="http://youthonrecord.org/themes/custom/themekit/pattern-lab/published/index.html" target="_blank">implementation</a></li>
-						</ul>
-					</section>
-					<section>
-						<h2>Things to Note</h2>
-						<ul>
-							<li>Directory structure</li>
-							<li>Consider how templates are being included from Drupal and used in Pattern Lab</li>
-							<li>Inspect how JSON data backs the tempaltes</li>
-							<li>See how Drupal patterns are made more clear within Pattern Lab</li>
 						</ul>
 					</section>
 				</section>
@@ -393,33 +411,38 @@
 
 				<section>
 					<h2>Appendix: Resources</h2>
-					<ul>
-						<li><a href="http://bradfrost.com/blog/post/atomic-web-design/" target="_blank">Brad Frost's Atomic Design</a></li>
-						<li><a href="http://bradfrost.com/blog/post/atomic-web-design/" target="_blank">Pattern Lab</a></li>
-						<li><a href="http://bradfrost.com/blog/post/atomic-web-design/" target="_blank">Twig</a></li>
-						<li><a href="http://bradfrost.com/blog/post/atomic-web-design/" target="_blank">Composer</a></li>
-						<li><a href="http://bradfrost.com/blog/post/atomic-web-design/" target="_blank">Gulp</a>/<a href="http://bradfrost.com/blog/post/atomic-web-design/" target="_blank">npm</a></li>
-						<li><a href="https://github.com/aleksip/plugin-data-transform" target="_blank">Data Transform Plugin</a></li>
-						<li>Forum One's Drupal Con <a href="https://events.drupal.org/neworleans2016/sessions/big-easy-front-end-development-pattern-lab-and-twig" target="_blank">talk</a> on their implementation of Pattern Lab</li>
-						<li>Phase Two's Drupal Con <a href="https://events.drupal.org/neworleans2016/sessions/road-runner-rules-more-what-you%E2%80%99d-call-guidelines-design-systems" target="_blank">talk</a> on design systems, Phase Two's <a href="https://github.com/phase2/pattern-lab-starter" target="_blank">starter kit</a></li>
-						<li><a href="http://www.aleksip.net/pattern-lab-and-drupal-8-theme-integration-update" target="_blank">Resources</a> relating to the procuess of incorporating Pattern Lab into Drupal</li>
-					</ul>
+					<small>
+						<ul class="small">
+							<li><a href="http://bradfrost.com/blog/post/atomic-web-design/" target="_blank">Brad Frost's Atomic Design</a></li>
+							<li><a href="http://bradfrost.com/blog/post/atomic-web-design/" target="_blank">Pattern Lab</a></li>
+							<li><a href="http://bradfrost.com/blog/post/atomic-web-design/" target="_blank">Twig</a></li>
+							<li><a href="http://bradfrost.com/blog/post/atomic-web-design/" target="_blank">Composer</a></li>
+							<li><a href="http://bradfrost.com/blog/post/atomic-web-design/" target="_blank">Gulp</a>/<a href="http://bradfrost.com/blog/post/atomic-web-design/" target="_blank">npm</a></li>
+							<li><a href="https://github.com/aleksip/plugin-data-transform" target="_blank">Data Transform Plugin</a></li>
+							<li>Forum One's Drupal Con <a href="https://events.drupal.org/neworleans2016/sessions/big-easy-front-end-development-pattern-lab-and-twig" target="_blank">talk</a> on their implementation of Pattern Lab</li>
+							<li>Phase Two's Drupal Con <a href="https://events.drupal.org/neworleans2016/sessions/road-runner-rules-more-what-you%E2%80%99d-call-guidelines-design-systems" target="_blank">talk</a> on design systems, Phase Two's <a href="https://github.com/phase2/pattern-lab-starter" target="_blank">starter kit</a></li>
+							<li><a href="http://www.aleksip.net/pattern-lab-and-drupal-8-theme-integration-update" target="_blank">Resources</a> relating to the procuess of incorporating Pattern Lab into Drupal</li>
+						</ul>
+					</small>
 				</section>
 
 				<section>
 					<h2>Appendix: Steps to include Pattern Lab in Drupal 8</h2>
-					<ol>
-						<li>Install Drupal 8 using your desired method</li>
-						<li>Add Pattern Lab in your theme: <code>composer create-project pattern-lab/edition-drupal-standard</code></li>
-						<li>Choose a starter kit option (demo gives some reasonable examples, the other starter kits have helpful examples as well) choose replace</li>
-						<li>Adjust assets in header</li>
-						<li>Optionally add/update gulp/grunt tasks for asset workflow</li>
-						<li>Create a drupal-templates folder in Pattern Lab and create symlinks inside to all of your template containing folders</li>
-						<li>Add any additional filters/functions used in your project, make sure to select Merge on \pl updates</li>
-						<li>Generate your pattern lab for the first time</li>
-						<li>Start adding templates/json in pattern lab that reference your Drupal templates</li>
-						<li>Theme and generate as you go!</li>
-					</ol>
+					<small>
+						<ol>
+							<li>Install Drupal 8 using your desired method</li>
+							<li>Add Pattern Lab in your theme: <code>composer create-project pattern-lab/edition-drupal-standard</code></li>
+							<li>Choose a starter kit option (demo gives some reasonable examples, the other starter kits have helpful examples as well) choose replace</li>
+							<li>In <code class="inline">pattern-lab/config/config.yml</code> set <code class="inline">twigAutoescape: false</code></li>
+							<li>Adjust assets in header (<code class="inline">pattern-lab/source/_meta/_00-head.twig</code>)</li>
+							<li>Optionally add/update gulp/grunt tasks for asset workflow</li>
+							<li>Create a drupal-templates folder in <code class="inline">pattern-lab/source/_patterns/08-drupal-templates</code> and create symlinks inside to all of your direct template containing folders</li>
+							<li>Add any additional filters/functions used in your project, make sure to select Merge on \pl updates</li>
+							<li>Generate your pattern lab for the first time</li>
+							<li>Start adding templates/json in pattern lab that reference your Drupal templates</li>
+							<li>Theme and generate as you go!</li>
+						</ol>
+					</small>
 				</section>
 			</div>
 		</div>
