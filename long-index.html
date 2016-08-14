@@ -36,9 +36,9 @@
 				<section>
 					<h2>Goals</h2>
 					<ul>
-						<li>Introduce concepts reqiured for using Drupal 8 and Pattern Lab together</li>
-						<li>Review a practical implementation that can get you up and running immediately</li>
-						<li>Discuss some benefits/challenges of a decoupled frontend workflow in Drupal projects</li>
+						<li>Touch on a lot of concepts at a basic level, focusing on how they fit together to support Pattern Lab and Drupal 8</li>
+						<li>Review a practical implementation that gets you up and running immediately</li>
+						<li>Discuss some benefits and challenges of a decoupled frontend workflow in Drupal projects</li>
 					</ul>
 				</section>
 				
@@ -47,14 +47,13 @@
 						<h2>Atomic Design</h2>
 						<ul>
 							<li>Use small pieces (atoms) to build out larger elements (molecules)</li>
-							<li>Repeat => components, templates, pages, etc...</li>
+							<li>Molecules combine to make larger functional components (organisms) which you can use to build templates and pages</li>
 						</ul>
 					</section>
 					<section>
 						<h2>Reusable Components</h2>
 						<ul>
 							<li>Atomic Design dictates creating and implementing reusable, explicitly defined components</li>
-							<li>Some Drupal Patterns: fields, field formatters, entities</li>
 							<li>Fields (reusable)</li>
 							<li>Field formatters (defined presentation)</li>
 							<li>Entities/bundles with view modes</li>
@@ -323,33 +322,31 @@
 				</section>
 
 				<section>
-					<h1>Conclusions: Benefits and Challenges</h1>
-				</section>
-
-				<section>
 					<section data-background-image="./media/gif/yas-taxi.gif">
-						<h1 class="fragment fade-in dark-overlay">I love this, it's so great! Count me in! 🙋</h1>
+					</section>
+					<section>
+						<h1>I love this, it's so great! 🙋</h1>
 					</section>
 					<section>
 						<h2>Decoupled Workflow</h2>
-						<p>Frontend workflow can be <i>completely</i> decoupled from Drupal</p>
+						<p>Frontend workflow can be completely decoupled from Drupal</p>
 					</section>
 					<section>
 						<h2>Flexible Project Workflow</h2>
-						<p>Permits for a frontend to be designed and built out before a sitebuild must be committed to, without "losing" that time</p>
+						<p>Permits for a frontend to be designed and built out before a sitebuild must be committed to, without losing that time</p>
 					</section>
 					<section>
 						<h2>Componentized Structure</h2>
-						<p>Isolates components by responsibility outside of the Drupal context (wrappers, containers, other element classes, etc)</p>
+						<p>Isolates components into the pieces of responsibility outside of the context of Drupal (wrappers, containers, other element classes, etc)</p>
 					</section>
 					<section>
 						<h2>Styleguide</h2>
-						<p>Produces a comprehensive interactive styleguide asset that develops with the project requiring minimal update</p>
+						<p>Produces a comprehensive interactive styleguide asset that develops with the project with only a small amount of upkeep</p>
 					</section>
 					<section>
-						<h2>Testing <small class="header-small"><i>(sort of)</i></small></h2>
-						<p>Provides an entire set of data for frontend design system that does not depend on the project database</p>
-						<p>Quick (relatively) visual "regression testing" for complicated components, or items that have many dependencies and moving parts</p>
+						<h2>Testing (sort of)</h2>
+						<p>Provides an entire set of data for all your frontend components that does not depend on the database.</p>
+						<p>Easy visual "regression testing" of sorts for complicated components, or items that have many dependencies and moving parts.</p>
 					</section>
 					<section>
 						<h2>Communities</h2>
@@ -358,45 +355,21 @@
 				</section>
 
 				<section>
-					<section data-background-image="./media/gif/cornered.gif">
-						<h1 class="fragment fade-in dark-overlay">I'm not sure, this sounds terrifying! 🙀</h1>
+					<section>
+						<h1>I'm not sure, this sounds terrifying! 🙀</h1>
 					</section>
 					<section>
 						<h2>Time</h2>
-						<ol>
-							<li class="fragment slide-in slide-out">With a reasonable base setup, the time investment to use this workflow should not be that great.</li>
-							<li class="fragment slide-in slide-out">Though, initial learning curve will be present and all members of the team must have buy in.</li>
-							<li class="fragment slide-in slide-out">Medium/large projects or maintained project, it can potentially save much more time than required to implement</li>
-						</ol>
+						<p>Though, through this talk, I hope we determined that with a reasonable base setup, the time investment to use this workflow is not that great. For medium/large projects, or projects that are maintained, it can be well worth it, and save more than the time it takes to create</p>
 					</section>
 					<section>
 						<h2>More Tools!</h2>
-						<ul>
-							<li>PHP/Composer</li>
-							<li>Node/gulp</li>
-							<li>Pattern Lab/Data Transform Plugin/JSON</li>
-							<li>Drupal</li>
-							<li>Twig</li>
-							<li>HTML/JS/CSS</li>
-							<li>Confident debugging issues that result from any combination of the above!</li>
-						</ul>
+						<p>Yes, there are more tools to learn and more things to potentially debug. To effectively use this workflow, the dev has to have a reasonable knowledge of PHP, understanding of twig, a strong understanding of Drupal 8 conventions, experience with front end workflow tools (gulp/grunt), maybe some amount of experience with node, and able to debug any of those parts.</p>
 						<p>Too many tools? It depends on your workflow, and your resources. But this is the direction of the Front End developer in the web space. Tools beyond html/css/javascript are par for the course.</p>
 					</section>
 					<section>
-						<h2>Too Many Tools?</h2>
-						<ul>
-							<li>Workflow</li>
-							<li>Resources</li>
-							<li>Team memberes</li>
-							<li>Some may argue that this has already become the commonplace description of a frontend developer in many other spaces</li>
-						</ul>
-					</section>
-					<section>
 						<h2>End to End Project Workflow</h2>
-						<ul>
-							<li>How does your company/team work?</li>
-							<li>The potential benefits require buy in from your <i>entire</i> team</li>
-						</ul>
+						 <p>How does your company work? There are a LOT of potential benefits from this type of workflow, but if your entire project process doesn't/can't adjust to position itself to gain from these benefits than you may strictly be weighing the internal dev benefits against the dev costs.</p>
 					</section>
 				</section>
 
@@ -407,32 +380,17 @@
 				<section>
 					<h2>Appendix: Resources</h2>
 					<ul>
-						<li><a href="http://bradfrost.com/blog/post/atomic-web-design/" target="_blank">Brad Frost's Atomic Design</a></li>
-						<li><a href="http://bradfrost.com/blog/post/atomic-web-design/" target="_blank">Pattern Lab</a></li>
-						<li><a href="http://bradfrost.com/blog/post/atomic-web-design/" target="_blank">Twig</a></li>
-						<li><a href="http://bradfrost.com/blog/post/atomic-web-design/" target="_blank">Composer</a></li>
-						<li><a href="http://bradfrost.com/blog/post/atomic-web-design/" target="_blank">Gulp</a>/<a href="http://bradfrost.com/blog/post/atomic-web-design/" target="_blank">npm</a></li>
-						<li><a href="https://github.com/aleksip/plugin-data-transform" target="_blank">Data Transform Plugin</a></li>
-						<li>Forum One's Drupal Con <a href="https://events.drupal.org/neworleans2016/sessions/big-easy-front-end-development-pattern-lab-and-twig" target="_blank">talk</a> on their implementation of Pattern Lab</li>
-						<li>Phase Two's Drupal Con <a href="https://events.drupal.org/neworleans2016/sessions/road-runner-rules-more-what-you%E2%80%99d-call-guidelines-design-systems" target="_blank">talk</a> on design systems, Phase Two's <a href="https://github.com/phase2/pattern-lab-starter" target="_blank">starter kit</a></li>
-						<li><a href="http://www.aleksip.net/pattern-lab-and-drupal-8-theme-integration-update" target="_blank">Resources</a> relating to the procuess of incorporating Pattern Lab into Drupal</li>
+						<li>Brad Frost</li>
+						<li>Pattern Lab</li>
+						<li>Twig</li>
+						<li>Composer</li>
+						<li>Gulp/npm</li>
+						<li>Drupal Con talks (2)</li>
 					</ul>
 				</section>
 
 				<section>
 					<h2>Appendix: Steps to include Pattern Lab in Drupal 8</h2>
-					<ol>
-						<li>Install Drupal 8 using your desired method</li>
-						<li>Add Pattern Lab in your theme: <code>composer create-project pattern-lab/edition-drupal-standard</code></li>
-						<li>Choose a starter kit option (demo gives some reasonable examples, the other starter kits have helpful examples as well) choose replace</li>
-						<li>Adjust assets in header</li>
-						<li>Add appropriate gulp tasks</li>
-						<li>Create a drupal-templates folder in Pattern Lab and create symlinks inside to all of your template containing folders</li>
-						<li>Add any additional filters/functions used in your project, make sure to Merge on pl updates</li>
-						<li>Generate your pattern lab for the first time</li>
-						<li>Start adding templates/json in pattern lab that reference your Drupal templates</li>
-						<li>Theme and generate as you go!</li>
-					</ol>
 					<ol>
 						<li>Composer new project in theme</li>
 						<li>Pick a starter</li>
