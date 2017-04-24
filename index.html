@@ -9,6 +9,8 @@
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/black.css">
 
+    <link rel="icon" href="./media/images/peanut-butter.png">
+
 		<!-- Custom Styles -->
 		<link rel="stylesheet" href="css/custom.css">
 
@@ -27,17 +29,32 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>
-					<h2>Atomic Design in Drupal 8: Isolating Your Frontend Workflow with Pattern Lab!</h2>
-					<p>Anthony Simone</p>
-					<p>Elevated Third</p>
+				<section class="title-slide" data-background-image="./media/images/baltimore-slide-bg.jpg">
+          <div class="logos">
+            <a href="https://www.elevatedthird.com/" target="_blank"><img class="no-defaults" style="width: 140px; display: block; float: left;" src="./media/images/e3_outline_logo.png"></a>
+            <a href="https://events.drupal.org/baltimore2017" target="_blank"><img class="no-defaults" style="width: 140px; display: block; float: right;" src="./media/images/bmore.png"></a>
+          </div>
+					<h2 style="clear: both;"><strong>Atomic Design in Drupal 8:</strong><br>Isolating Your Frontend Workflow with Pattern Lab!</h2>
+          <p class="host-byline">Hosted by <strong>Anthony Simone</strong></p>
 					<p><small><a href="https://anthonysimone.github.com/drupal-8-pattern-lab-talk" target="_blank">anthonysimone.github.com/drupal-8-pattern-lab-talk</a></small></p>
 				</section>
+
+        <section class="intro-slide" data-background-color="#fff">
+          <div class="intro-wrap">
+            <img class="no-defaults headshot" src="./media/images/anthony.jpg">
+            <div class="intro-description">
+              <h4 class="byline"><span class="name">Anthony Simone</span> | Developer</h4>
+              <p class="email">asimone@elevatedthird.com</p>
+              <span class="e3-break"></span>
+              <h2 class="welcome"><strong>Welcome to DrupalCon Baltimore!</strong> I work for Elevated Third, a <span class="e3-strong">digital agency</span> based in Denver, Colorado. </h2>
+            </div>
+          </div>
+        </section>
 
 				<section>
 					<h2>Goals</h2>
 					<ul>
-						<li>Introduce concepts reqiured for using Drupal 8 and Pattern Lab together</li>
+						<li>Introduce concepts required for using Drupal 8 and Pattern Lab together</li>
 						<li>Review a practical implementation that can get you up and running immediately</li>
 						<li>Discuss some benefits/challenges of a decoupled frontend workflow in Drupal projects</li>
 					</ul>
@@ -47,6 +64,7 @@
 					<section>
 						<h2>Atomic Design</h2>
 						<ul>
+							<li>Create a system of components</li>
 							<li>Use small pieces (atoms) to build out larger elements (molecules)</li>
 							<li>Repeat => components, templates, pages, etc...</li>
 						</ul>
@@ -54,21 +72,24 @@
 					<section>
 						<h2>Reusable Components</h2>
 						<ul>
-							<li>Atomic Design dictates creating and implementing reusable, explicitly defined components</li>
-							<li>Some Drupal Patterns: fields, field formatters, entities</li>
-							<li>Fields (reusable)</li>
-							<li>Field formatters (defined presentation)</li>
-							<li>Entities/bundles with view modes</li>
-							<li>Paragraphs</li>
+							<li>Atomic Design dictates creating and implementing <strong>reusable</strong>, explicitly defined components</li>
 						</ul>
 					</section>
 					<section>
-						<h2>Front End Workflow in Drupal 7</h2>
+						<h2>Component Patterns in Drupal</h2>
 						<ul>
-							<li>Sitebuilding -> Content -> Theming</li>
-							<li>Theming depends on placeholder content during development</li>
-							<li>Styling happens within the entire Drupal context</li>
-							<li>Problems?</li>
+							<li>Fields and field formatters</li>
+							<li>Entities and view modes</li>
+							<li>Paragraphs module</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Front End Workflow in Drupal 7/8</h2>
+						<ul>
+							<li>Sitebuilding → Content → Theming</li>
+							<li>Theming depends on (placeholder) content during development</li>
+							<li>Theming occurs within the entire Drupal context</li>
+							<li>Issues?</li>
 						</ul>
 					</section>
 				</section>
@@ -78,14 +99,15 @@
 						<h2>Enter Pattern Lab</h2>
 						<blockquote>At its core, <a href="http://patternlab.io/" target="_blank">Pattern Lab</a> is a static site generator (powered by either PHP or Node) that stitches together UI components. But there's a whole lot more to it than that!</blockquote>
 					</section>
-					<section data-background-video="./media/video/atomic-design.mp4" data-background-video-loop data-background-video-muted>
+					<section data-background-color="#fff" data-background-video="./media/video/atomic-design.mp4" data-background-video-loop data-background-video-muted>
 					</section>
 					<section>
 						<h2>Pattern Lab as a Design System</h2>
 						<ul>
 							<li>Build pattern driven user interfaces using atomic design principles</li>
-							<li>Create components from <b>consistent</b>, defined building blocks</li>
+							<li>Create components from <b>consistent</b>, explicitly defined building blocks</li>
 							<li>Documentation - consistent language throughout entire team</li>
+              <li><a href="http://demo.patternlab.io/" target="_blank">Pattern Lab Demo Project</a></li>
 						</ul>
 					</section>
 					<section>
@@ -94,7 +116,7 @@
 							<li>PHP or node version</li>
 							<li>Tool/Language agnostic</li>
 							<li>Templating engine flexible (Mustache, Twig, Handlebars, etc)</li>
-							<li>Viewport resizer, annotations, pattern lineage, and more!</li>
+							<li>Extra tools - viewport sizer, annotations, pattern lineage, and more!</li>
 						</ul>
 					</section>
 					<section>
@@ -103,6 +125,7 @@
 							<li>Create smallest templates, include those in larger templates, etc...</li>
 							<li>Templates are backed by a JSON file that provides the data</li>
 							<li>Single source of truth</li>
+              <li>Pull down/check out <a href="https://github.com/pattern-lab/edition-php-twig-standard" target="_blank">demo project</a></li>
 						</ul>
 					</section>
 					<section>
@@ -173,7 +196,7 @@
 						<ul>
 							<li>Aleksi Peebles developed a solution</li>
 							<li><code class="inline">.twig</code> templates and <code class="inline">.json</code> files exist in pairs</li>
-							<li>Use the <code class="inline">.json</code> data to include templates</li>
+							<li>Leverages <code class="inline">.json</code> data to include templates</li>
 						</ul>
 					</section>
 					<section>
@@ -182,36 +205,97 @@
 							<li><code class="inline">Attribute()</code> - Compiles the Drupal attributes object</li>
 							<li><code class="inline">include()</code> - Include a template in the specified variable</li>
 							<li><code class="inline">join()</code> - Join multiple templates together in the specified variable</li>
-							<li>Allows simple inclusion of templates in <code class="inline">{{ content.field_name }}</code> or <code class="inline">{{ content }}</code> vars, but more on this later</li>
+							<li>Allows simple inclusion of templates in <code class="inline">{{ content.field_name }}</code> or <code class="inline">{{ content }}</code> vars</li>
 						</ul>
 					</section>
+					<section>
+						<h2>Attribute()</h2>
+						<pre>.json<code class="hljs" data-trim contenteditable>
+"attributes": {
+  "Attribute()": {
+    "class": ["class-name"]
+  }
+}
+						</code></pre>
+            <pre>.twig<code class="hljs" data-trim contenteditable>
+&lt;article{{ attributes }}&gt;
+  {# ...drupal template content... #}
+&lt;/article&gt;
+						</code></pre>
+					</section>
+          <section>
+            <h2>include()</h2>
+            <pre>.json<code class="hljs" data-trim contenteditable>
+{
+  "label": "Jon Doe",
+  "content": {
+    "field_profile_image": {
+      "include()": {
+        "pattern": "elements-profile-image"
+      }
+    }
+  }
+}
+						</code></pre>
+            <pre>.twig<code class="hljs" data-trim contenteditable>
+&lt;article&gt;
+  {{ label }}
+  {{ content.field_profile_image }}
+&lt;/article&gt;
+						</code></pre>
+          </section>
+          <section>
+            <h2>join()</h2>
+            <pre>.json<code class="hljs" data-trim contenteditable>
+{
+  "page": {
+    "content_bottom": {
+      "join()": [
+        "elements-efq-featured-event",
+        "elements-efq-upcoming-events",
+        "elements-efq-past-events"
+      ]
+    }
+  }
+}
+						</code></pre>
+            <pre>.twig<code class="hljs" data-trim contenteditable>
+&lt;div class="page-template"&gt;
+  {# ... #}
+  &lt;div class="region-content-bottom"&gt;
+    {{ page.content_bottom }}
+  &lt;/div&gt;
+  {# ... #}
+&lt;/div&gt;
+						</code></pre>
+          </section>
 				</section>
 
 				<section>
 					<section>
 						<h2>Implementation</h2>
-						<p>We've made progress, the big problem is solved, and we're pretty sure it's going to work, but we're not there yet.</p>
+						<p>Progress! But, we still must practically get Drupal and Pattern Lab working together.</p>
 					</section>
 					<section>
 						<h2>Some Examples of Solutions</h2>
 						<ul>
 							<li>Forum One's <a href="https://events.drupal.org/neworleans2016/sessions/big-easy-front-end-development-pattern-lab-and-twig" target="_blank">talk</a> at Drupal Con New Orleans on Drupal 8 and Pattern Lab</li>
 							<li>Phase Two's <a href="https://events.drupal.org/neworleans2016/sessions/wireframes-widgets-using-paragraphs-and-prototyping-tools-create" target="_blank">talk</a> at Drupal Con New Orleans about design process</li>
-							<li>Aleksi Peeble's <a href="https://github.com/aleksip/shila-drupal-theme" target="_blank">Shila theme</a></li>
+							<li>Aleksi Peebles' <a href="https://github.com/aleksip/shila-drupal-theme" target="_blank">Shila theme</a></li>
 						</ul>
 					</section>
 				</section>
 
 				<section>
 					<section>
-						<h2>Our Solution</h2>
+						<h2>Further Challenges</h2>
 						<p>Let's look at some more challenges that come up for an implementation of Pattern Lab in Drupal and see how our approach will solve them</p>
 					</section>
 					<section>
 						<h2>Project Structure</h2>
 						<ul>
 							<li>Where should Pattern Lab live?</li>
-							<li>In the theme, but how?</li>
+							<li>How will it work?</li>
 						</ul>
 					</section>
 					<section>
@@ -226,42 +310,46 @@
 						<table>
 							<thead>
 								<tr>
-									<td>Drupal 8 Twig</td>
-									<td>Pattern Lab Twig</td>
+									<th>Drupal 8 Twig</th>
+									<th>Pattern Lab Twig</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>
-										<p>Finds templates <i>anywhere</i> in the Drupal theme</p>
-										<p>Only recognizes templates ending with <code class="inline">.html.twig</code></p>
-										<p>Will not include <code class="inline">.twig</code> files</p>
-									</td>
-									<td>
-										<p>Recognizes in specific locations within the PL project</p>
-										<p>Any templates ending in <code class="inline">.twig</code></p>
-										<p>PL is inside our Drupal project</p>
-									</td>
-								</tr>
+                <tr>
+                  <td>Finds templates <i>anywhere</i> in the Drupal theme</td>
+                  <td>Recognizes in specific locations within the PL project</td>
+                </tr>
+                <tr>
+                  <td>Only recognizes templates ending with <code class="inline">.html.twig</code></td>
+                  <td>Any templates ending in <code class="inline">.twig</code></td>
+                </tr>
+                <tr>
+                  <td>Will not include <code class="inline">.twig</code> files</td>
+                  <td>PL is inside our Drupal project</td>
+                </tr>
 							</tbody>
 						</table>
 					</section>
+          <section>
+            <h2>Given</h2>
+            <img style="width: 500px;" src="./media/images/theme-structure.jpg">
+          </section>
 					<section>
-						<h2>Problem</h2>
-						<ul>
+						<h2>Problems</h2>
+						<ol>
+              <li>Pattern Lab is not aware of templates outside of its project root</li>
 							<li>Drupal is aware of all templates inside Pattern Lab</li>
-							<li>Pattern Lab is not aware of templates outside of its project root</li>
 							<li>We want a single source of truth for our assets</li>
-							<li>We also would like our templates should live where you might expect to find them</li>
-						</ul>
+							<li>Template directory should live where you might normally expect to find it</li>
+						</ol>
 					</section>
 					<section>
 						<h2>Solution</h2>
 						<ul>
 							<li>Symlinks!</li>
-							<li>Dir in our patterns folder <code class="inline">drupal-templates</code> with symlinks to template directories (<code class="inline">node</code>, <code class="inline">paragraph</code>, <code class="inline">form</code>, for example)</li>
-							<li>then we can keep all of our templates in our Drupal project where we expect to see them, but also give Pattern Lab access</li>
-							<li><b>Caveat:</b> Pattern Lab will only recognize templates in these immediate child directories, so you are limited in the way you can structure your <code class="inline">templates</code> directory in your drupal project</li>
+              <li>In Pattern Lab, link to any folder in the Drupal project containing necessary templates</li>
+              <li>All templates remain in Drupal structure</li>
+							<li><b>Caveat:</b> must not link to nested folders</li>
 						</ul>
 					</section>
 					<section>
@@ -269,19 +357,62 @@
 						<img style="width: 48%; float: left;" src="./media/images/drupal-symlinks.png">
 						<img style="width: 48%; float: right;" src="./media/images/themekit-templates.png">
 					</section>
-					<section>
-						<h2>Template Inclusion</h2>
-						<div style="width: 48%; float: left;">
-							<ul>
-								<li><small>Most templates will simply include/extend a drupal template</small></li>
-							</ul>
-							<img src="./media/images/node-template.png">
-						</div>
-						<div style="width: 48%; float: right;">
-							<img src="./media/images/twig-pl-template.png">
-							<img src="./media/images/json-pl.png">
-						</div>
-					</section>
+          <section>
+            <h2>Template Inclusion</h2>
+            <pre>/theme/templates/node/node--news--teaser.html.twig<code class="hljs" data-trim contenteditable>
+{% set classes = [
+  'node',
+  'node--type-' ~ node.bundle|clean_class,
+  not node.isPublished() ? 'node--unpublished',
+  view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+] %}
+&lt;article{{ attributes.addClass(classes) }}&gt;
+  &lt;div{{ content_attributes.addClass('node__content') }}&gt;
+    {{ content.field_date }}
+    {{ content.field_link }}
+  &lt;/div&gt;
+&lt;/article&gt;
+						</code></pre>
+          </section>
+          <section>
+            <h2>Using Templates in Pattern Lab</h2>
+            <pre>.../_pattern/03-nodes/09-news/02-news-teaser.twig<code class="hljs" data-trim contenteditable>
+{% extends "node--news--teaser.html.twig" %}
+						</code></pre>
+            <pre>.../_pattern/03-nodes/09-news/02-news-teaser.json<code class="hljs" data-trim contenteditable>
+{
+  ...
+  "attributes": {
+    "Attribute()": {
+      "class": []
+    }
+  },
+  "node": {
+    "bundle": "news"
+  },
+  "view_mode": "teaser",
+  "content": {
+    "field_link": {
+      "include()": {
+        "pattern": "elements-field-link"
+      }
+    },
+    "field_date": {
+      "include()": {
+        "pattern": "elements-field-date",
+        "with": {
+          "items": [
+            {
+              "content": "<time datetime=\"2015-08-22T01:00:00Z\">May 30, 2016</time>"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
+						</code></pre>
+          </section>
 					<section>
 						<h2>Custom Filters and Functions</h2>
 						<ul>
@@ -290,28 +421,28 @@
 						</ul>
 					</section>
 					<section>
-						<h3>{{ content }} v {{ content.field_name }}</h3>
+            <h3><code class="inline">{{ content }}</code></h3>
 						<ul>
 							<li>Twig prints strings</li>
-							<li><code class="inline">{{ content }}</code> works the same as <code class="inline">&lt;?php print $variables['content'] ?&gt;</code> because of Drupal's custom Twig implementation</li>
-							<li>You may find yourself being more explicit printing fields in your templates</li>
+              <li>However, in Drupal <code class="inline">{{ content }}</code> works</li>
+              <li><code class="inline">join()</code> can merge multiple field templates into a string and print them all out with <code class="inline">{{ content }}</code></li>
 						</ul>
 					</section>
 					<section>
-						<h3>{{ content }} Continued</h3>
+            <h3><code class="inline">{{ content.field_name }}</code></h3>
 						<ul>
-							<li><code class="inline">join()</code> can merge multiple field templates into a string and print them all out with <code class="inline">{{ content }}</code></li>
 							<li><code class="inline">include()</code> single templates in each key under content and print them with <code class="inline">{{ content.field_name}}</code></li>
-							<li>Though, you can't quite do both</li>
+							<li>Currently, you cannot use both in a template</li>
 							<li>Choose one pattern or the other</li>
 						</ul>
 					</section>
 					<section>
 						<h2>OMG My Repo is <i>SO MESSY</i></h2>
 						<ul>
-							<li>Ignore the <code class="inline">public</code> dir</li>
+              <li>Static site generator</li>
+							<li>Ignore the <code class="inline">public</code> dir (compilation target)</li>
 							<li>Create a <code class="inline">published</code> directory</li>
-							<li>Gulp (or grunt) task that copies public to published</li>
+							<li>Gulp/grunt task that copies public to published</li>
 						</ul>
 					</section>
 				</section>
@@ -338,11 +469,14 @@
 
 				<section>
 					<section data-background-image="./media/gif/yas-taxi.gif">
-						<h1 class="fragment fade-in dark-overlay">I love this, it's so great! Count me in! 🙋</h1>
+						<h1 class="fragment fade-in dark-overlay">I love this, it's so great! Count me in! &#x1F64B;</h1>
 					</section>
 					<section>
 						<h2>Decoupled Workflow</h2>
-						<p>Frontend workflow can be <i>completely</i> decoupled from Drupal</p>
+            <ul>
+              <li>Frontend workflow can be <i>completely</i> decoupled from Drupal</li>
+              <li>Theme <i>outside</i> of Drupal</li>
+            </ul>
 					</section>
 					<section>
 						<h2>Flexible Project Workflow</h2>
@@ -369,7 +503,7 @@
 
 				<section>
 					<section data-background-image="./media/gif/cornered.gif">
-						<h1 class="fragment fade-in dark-overlay">I'm not sure, this sounds terrifying! 🙀</h1>
+						<h1 class="fragment fade-in dark-overlay">I'm not sure, this sounds terrifying! &#x1F640;</h1>
 					</section>
 					<section>
 						<h2>Time</h2>
@@ -410,10 +544,6 @@
 				</section>
 
 				<section>
-					<h2>Questions!<br>Thoughts!<br>Comments!</h2>
-				</section>
-
-				<section>
 					<h2>Appendix: Resources</h2>
 					<small>
 						<ul class="small">
@@ -448,6 +578,42 @@
 						</ol>
 					</small>
 				</section>
+
+        <section class="sprint-slide" data-background-image="./media/images/sprints-bg.jpg">
+          <h2>Join Us for <span class="light-blue">Contribution Sprints</span></h2>
+          <h3>Friday, April 2, 2017</h3>
+          <div class="sprint-details">
+            <div class="detail">
+              <strong>First-Time Sprinter Workshop</strong><br>
+              9:00am - 12:00pm<br>
+              Room: 307 - 308
+            </div>
+            <div class="detail">
+              <strong>Mentored Core Sprint</strong><br>
+              9:00am - 12:00pm<br>
+              Room: 301 - 303
+            </div>
+            <div class="detail">
+              <strong>General Sprints</strong><br>
+              9:00am - 6:00pm<br>
+              Room: 309 - 310
+            </div>
+          </div>
+        </section>
+
+        <section class="thank-you-slide">
+          <div class="side-logos">
+            <a href="https://www.elevatedthird.com/" target="_blank"><img class="no-defaults" style="width: 140px; display: block;" src="./media/images/e3_outline_logo.png"></a>
+            <a href="https://events.drupal.org/baltimore2017" target="_blank"><img class="no-defaults" style="width: 140px; display: block;" src="./media/images/bmore.png"></a>
+          </div>
+          <div class="thank-you-content">
+            <h1>Thank you!</h1>
+            <p><strong>What did you think?</strong></p>
+            <p><a href="https://events.drupal.org/baltimore2017/sessions/atomic-design-drupal-8-isolating-your-frontend-workflow-pattern-lab" target="_blank">Locate this session</a> at the DrupalCon website</p>
+            <p><a href="https://www.surveymonkey.com/r/drupalconbaltimore" target="_blank">Take the survey!</a></p>
+            <h3><strong><i>Questions? Comments? Thoughts?</i></strong></h3>
+          </div>
+        </section>
 			</div>
 		</div>
 
@@ -467,6 +633,17 @@
 					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
 				]
 			});
+
+      Array.prototype.slice.call(document.getElementsByTagName('section')).forEach(function(slide) {
+        if (!(slide.getAttribute('data-background') ||
+          slide.getAttribute('data-background-image') ||
+          slide.getAttribute('data-background-color') ||
+          slide.getAttribute('data-background-video') ||
+          slide.getAttribute('data-background-iframe'))){
+          slide.setAttribute('data-background-color', '#0077c8')
+        }
+      });
+
 		</script>
 	</body>
 </html>

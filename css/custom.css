@@ -1,9 +1,30 @@
 
+.reveal pre {
+	font-size: 0.65em;
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+
+.reveal table {
+	border: 1px solid;
+}
+.has-dark-background table > thead {
+	background-color: rgba(255, 255, 255, 0.2);
+}
+
+.has-light-background table > thead {
+	background-color: rgba(0, 0, 0, 0.2);
+}
 
 code.inline {
-	background-color: rgba(255,255,255,0.2);
 	padding: 0 0.2em;
 	border-radius: 0.2em;
+}
+.has-dark-background code.inline {
+	background-color: rgba(255, 255, 255, 0.3);
+}
+.has-light-background code.inline {
+	background-color: rgba(0, 0, 0, 0.3);
 }
 
 .reveal h1,
@@ -30,4 +51,105 @@ code.inline {
 	width: 1000%;
 	background: rgba(0, 0, 0, 0.6);
 	z-index: -1;
+}
+
+.reveal section img.no-defaults {
+	background: none;
+	box-shadow: none;
+	border: none;
+}
+
+.reveal .e3-break {
+	display: block;
+	height: 5px;
+	width: 120px;
+	background-color: #0077c8;
+	margin: 30px 0;
+}
+
+.reveal .e3-strong {
+	font-weight: 700;
+	color: #0077c8
+}
+
+.reveal .light-blue {
+	color: #0BDDFF;
+}
+
+/* title slide */
+.title-slide .logos img {
+	margin-bottom: 50px;
+}
+.reveal .title-slide {
+	text-align: left;
+}
+.reveal .title-slide h2 {
+	font-weight: 400;
+}
+.reveal .title-slide h2 strong {
+	font-style: italic;
+	font-weight: 900;
+}
+
+.title-slide .host-byline {
+	margin-top: 50px;
+}
+
+/* intro slide */
+.reveal .intro-slide {
+	text-align: left;
+}
+.intro-slide .byline {
+	margin: 0;
+	line-height: 1;
+}
+.intro-slide .name {
+	color: #0077C8;
+	text-transform: uppercase;
+}
+.intro-slide .email {
+	margin: 10px 0;
+	font-size: 0.8em;
+}
+.intro-slide .headshot {
+	width: 160px;
+	display: block;
+	float: left;
+	margin: 0;
+}
+.intro-slide .intro-description {
+	float: left;
+	width: calc(100% - 200px);
+	padding-left: 40px;
+}
+.intro-slide .welcome {
+	font-weight: 400;
+	/*font-size: 1.6em;*/
+}
+
+/* sprint slide */
+.reveal .sprint-slide {
+
+}
+.sprint-slide .sprint-details {
+	margin-top: 50px;
+	display: flex;
+}
+.sprint-slide .detail {
+	flex: 1;
+	width: 0;
+	font-size: 0.8em;
+}
+
+/* thank you slide */
+.reveal .thank-you-slide {
+	text-align: left;
+}
+.reveal .thank-you-slide .side-logos {
+	width: 180px;
+	float: left
+}
+.reveal .thank-you-slide .thank-you-content {
+	width: calc(100% - 180px);
+	float: left;
 }
