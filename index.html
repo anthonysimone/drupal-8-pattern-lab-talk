@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>Pattern Lab and Drupal</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/black.css">
@@ -52,7 +52,7 @@
         </section>
 
 				<section>
-					<h2>Goals</h2>
+					<h1>Goals</h1>
 					<ul>
 						<li>Introduce concepts required for using Drupal 8 and Pattern Lab together</li>
 						<li>Review a practical implementation that can get you up and running immediately</li>
@@ -65,8 +65,8 @@
 						<h2>Atomic Design</h2>
 						<ul>
 							<li>Create a system of components</li>
-							<li>Use small pieces (atoms) to build out larger elements (molecules)</li>
-							<li>Repeat => components, templates, pages, etc...</li>
+							<li>Use small pieces (atoms) to build out larger elements (molecules/organism)</li>
+							<li>Repeat → components, templates, pages, etc...</li>
 						</ul>
 					</section>
 					<section>
@@ -414,13 +414,6 @@
 						</code></pre>
           </section>
 					<section>
-						<h2>Custom Filters and Functions</h2>
-						<ul>
-							<li>Ensure all custom filters and functions are defined in your Pattern Lab project</li>
-							<li><code class="inline">pattern-lab/source/_twig-components</code></li>
-						</ul>
-					</section>
-					<section>
             <h3><code class="inline">{{ content }}</code></h3>
 						<ul>
 							<li>Twig prints strings</li>
@@ -436,6 +429,13 @@
 							<li>Choose one pattern or the other</li>
 						</ul>
 					</section>
+          <section>
+            <h2>Custom Filters and Functions</h2>
+            <ul>
+              <li>Ensure all custom filters and functions are defined in your Pattern Lab project</li>
+              <li><code class="inline">pattern-lab/source/_twig-components</code></li>
+            </ul>
+          </section>
 					<section>
 						<h2>OMG My Repo is <i>SO MESSY</i></h2>
 						<ul>
@@ -565,13 +565,13 @@
 					<small>
 						<ol>
 							<li>Install Drupal 8 using your desired method</li>
-							<li>Add Pattern Lab in your theme: <code>composer create-project pattern-lab/edition-drupal-standard</code></li>
+							<li>Add Pattern Lab in your theme: <code class="inline">composer create-project pattern-lab/edition-drupal-standard</code></li>
 							<li>Choose a starter kit option (demo gives some reasonable examples, the other starter kits have helpful examples as well) choose replace</li>
 							<li>In <code class="inline">pattern-lab/config/config.yml</code> set <code class="inline">twigAutoescape: false</code></li>
 							<li>Adjust assets in header (<code class="inline">pattern-lab/source/_meta/_00-head.twig</code>)</li>
 							<li>Optionally add/update gulp/grunt tasks for asset workflow</li>
 							<li>Create a drupal-templates folder in <code class="inline">pattern-lab/source/_patterns/08-drupal-templates</code> and create symlinks inside to all of your direct template containing folders</li>
-							<li>Add any additional filters/functions used in your project, make sure to select Merge on \pl updates</li>
+							<li>Add any additional filters/functions used in your project, make sure to select Merge on PL updates</li>
 							<li>Generate your pattern lab for the first time</li>
 							<li>Start adding templates/json in pattern lab that reference your Drupal templates</li>
 							<li>Theme and generate as you go!</li>
@@ -581,7 +581,7 @@
 
         <section class="sprint-slide" data-background-image="./media/images/sprints-bg.jpg">
           <h2>Join Us for <span class="light-blue">Contribution Sprints</span></h2>
-          <h3>Friday, April 2, 2017</h3>
+          <h3>Friday, April 28, 2017</h3>
           <div class="sprint-details">
             <div class="detail">
               <strong>First-Time Sprinter Workshop</strong><br>
